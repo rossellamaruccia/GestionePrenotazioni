@@ -1,4 +1,4 @@
-package entities;
+package com.example.GestionePrenotazioni.entities;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -8,11 +8,11 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "edifici")
 @Getter
 @Setter
 public class Edificio {
-    @OneToMany(mappedBy = "edificio_id")
+    @OneToMany(mappedBy = "edificio")
     List<Postazione> listaPostazioni;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

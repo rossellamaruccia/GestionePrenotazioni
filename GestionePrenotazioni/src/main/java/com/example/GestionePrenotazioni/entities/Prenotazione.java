@@ -1,4 +1,4 @@
-package entities;
+package com.example.GestionePrenotazioni.entities;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Entity
-@Table
+@Table(name = "prenotazioni")
 @Getter
 @Setter
 public class Prenotazione {
@@ -17,10 +17,10 @@ public class Prenotazione {
     @Setter(AccessLevel.NONE)
     private long id;
     @ManyToOne
-    @JoinColumn(name = "utente_id")
+    @JoinColumn(name = "utente")
     private Utente utente;
     @ManyToOne
-    @JoinColumn(name = "postazione_id")
+    @JoinColumn(name = "postazione")
     private Postazione postazione;
 
     private LocalDate data_prenotazione;

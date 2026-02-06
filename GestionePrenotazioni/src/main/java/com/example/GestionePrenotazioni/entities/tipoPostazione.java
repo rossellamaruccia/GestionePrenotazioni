@@ -1,4 +1,4 @@
-package entities;
+package com.example.GestionePrenotazioni.entities;
 
 public enum tipoPostazione {
     PRIVATO,

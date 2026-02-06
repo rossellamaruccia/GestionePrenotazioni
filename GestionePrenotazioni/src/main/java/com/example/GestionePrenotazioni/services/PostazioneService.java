@@ -1,5 +1,6 @@
 package com.example.GestionePrenotazioni.services;
 
+import com.example.GestionePrenotazioni.entities.Postazione;
 import com.example.GestionePrenotazioni.repositories.PostazioneRep;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,4 +16,13 @@ public class PostazioneService {
         this.postazioneRep = postazioneRep;
     }
 
+    public void save(Postazione postazione) {
+        postazioneRep.save(postazione);
+    }
+
+    public void modificaDescrizione(String nome_post, String nuova_desc) {
+        Postazione selected = postazioneRep.findByNome(nome_post);
+        //todo: throw exc if not found
+        selected.setDescrizione(nuova_desc);
+    }
 }

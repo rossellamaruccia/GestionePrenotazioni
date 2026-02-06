@@ -1,5 +1,6 @@
 package com.example.GestionePrenotazioni.entities;
 
+import com.example.GestionePrenotazioni.repositories.EdificioRep;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -8,6 +9,11 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @PropertySource("application.properties")
 public class AppConfig {
+    private EdificioRep edificioRep;
+
+    AppConfig(EdificioRep edificioRep) {
+        this.edificioRep = edificioRep;
+    }
 
     @Primary
     @Bean
@@ -18,7 +24,8 @@ public class AppConfig {
     @Primary
     @Bean
     public Postazione small() {
-        return new Postazione(tipoPostazione.PRIVATO, 50, palazzoDellaCarovana());
+        Edificio pdc = edificioRep.findByNome("Palazzo della Carovana");
+        return new Postazione(tipoPostazione.PRIVATO, 50, pdc);
     }
 
     @Bean
@@ -29,7 +36,8 @@ public class AppConfig {
 
     @Bean
     public Postazione medium() {
-        return new Postazione(tipoPostazione.SALA_RIUNIONI, 100, palazzoDeiCongressi());
+        Edificio pdcg = edificioRep.findByNome("Palazzo dei Congressi");
+        return new Postazione(tipoPostazione.SALA_RIUNIONI, 100, pdcg);
     }
 
     @Bean
@@ -40,7 +48,25 @@ public class AppConfig {
 
     @Bean
     public Postazione big() {
-        return new Postazione(tipoPostazione.OPEN_SPACE, 350, anfiteatroRomano());
+        Edificio ar = edificioRep.findByNome("Anfiteatro Romano");
+        return new Postazione(tipoPostazione.OPEN_SPACE, 350, ar);
     }
+
+    @Primary
+    @Bean
+    public Utente rosmaru() {
+        return new Utente("rosmaru", "Rossella Maruccia", "rosmaru@email.com");
+    }
+
+    @Bean
+    public Utente alesmaru() {
+        return new Utente("alesmaru", "Alessandro Maruccia", "alesmaru@email.com");
+    }
+
+    @Bean
+    public Utente miri() {
+        return new Utente("miri", "Miriam Torregrossa", "miritorre@email.com");
+    }
+
 
 }

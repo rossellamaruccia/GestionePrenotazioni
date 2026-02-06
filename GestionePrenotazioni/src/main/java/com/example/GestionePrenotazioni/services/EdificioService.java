@@ -2,7 +2,6 @@ package com.example.GestionePrenotazioni.services;
 
 import com.example.GestionePrenotazioni.entities.Edificio;
 import com.example.GestionePrenotazioni.repositories.EdificioRep;
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,6 @@ public class EdificioService {
         this.edificioRep = edificioRep;
     }
 
-    @Transactional
     public void save(Edificio edificio) {
         edificioRep.save(edificio);
     }

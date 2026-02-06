@@ -23,8 +23,7 @@ public class Prenotazione {
     @JoinColumn(name = "postazione")
     private Postazione postazione;
 
-    private LocalDate data_prenotazione;
-    private LocalDate data_fine_prenotazione;
+    private LocalDate dataPrenotazione;
 
     public Prenotazione() {
     }
@@ -33,8 +32,7 @@ public class Prenotazione {
         this.utente = utente;
         this.postazione = postazione;
         //TODO: aggiungere controlli sulle date di prenotazione
-        this.data_prenotazione = LocalDate.now();
-        this.data_fine_prenotazione = data_prenotazione.plusDays(1);
+        this.dataPrenotazione = LocalDate.now();
     }
 
     @Override
@@ -43,8 +41,7 @@ public class Prenotazione {
                 "id=" + id +
                 ", utente=" + utente +
                 ", postazione=" + postazione +
-                ", data_prenotazione=" + data_prenotazione +
-                ", data_fine_prenotazione=" + data_fine_prenotazione +
+                ", data_prenotazione=" + dataPrenotazione +
                 '}';
     }
 }

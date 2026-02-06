@@ -24,6 +24,7 @@ public class Prenotazione {
     private Postazione postazione;
 
     private LocalDate dataPrenotazione;
+    private LocalDate dataFinePrenotazione;
 
     public Prenotazione() {
     }
@@ -33,6 +34,7 @@ public class Prenotazione {
         this.postazione = postazione;
         //TODO: aggiungere controlli sulle date di prenotazione
         this.dataPrenotazione = LocalDate.now();
+        this.dataFinePrenotazione = dataPrenotazione.plusDays(1);
     }
 
     @Override

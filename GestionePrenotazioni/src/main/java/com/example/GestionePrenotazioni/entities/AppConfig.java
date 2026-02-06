@@ -1,18 +1,25 @@
 package com.example.GestionePrenotazioni.entities;
 
 import com.example.GestionePrenotazioni.repositories.EdificioRep;
+import com.example.GestionePrenotazioni.repositories.PostazioneRep;
+import com.example.GestionePrenotazioni.repositories.UtenteRep;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 
+import java.util.Optional;
+
 @Configuration
 @PropertySource("application.properties")
 public class AppConfig {
     private EdificioRep edificioRep;
+    private UtenteRep utenteRep;
+    private PostazioneRep postazioneRep;
 
-    AppConfig(EdificioRep edificioRep) {
+    AppConfig(EdificioRep edificioRep, UtenteRep utenteRep) {
         this.edificioRep = edificioRep;
+        this.utenteRep = utenteRep;
     }
 
     @Primary
@@ -69,4 +76,11 @@ public class AppConfig {
     }
 
 
+    @Primary
+    @Bean
+    public Prenotazione p3() {
+        Utente rosmaru = utenteRep.findByUsername("rosmaru");
+        Optional<Postazione> posto = postazioneRep.findById(Long.valueOf(1));
+        //return new Prenotazione(rosmaru, posto);
+    }
 }

@@ -14,6 +14,7 @@ import java.util.List;
 public class Postazione {
     @OneToMany(mappedBy = "postazione")
     List<Prenotazione> prenotazioni;
+    //se nella lista prenotazioni di una postazione c'è una prenotazione con data = LocalDate.now allora la postazione è occupata
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)

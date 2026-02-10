@@ -60,8 +60,8 @@ public class Runner implements CommandLineRunner {
 //            prenotazioneService.save(p1);
 
             //provo controllo sulla postazione
-            Prenotazione p2 = new Prenotazione(rosmaru, big);
-            prenotazioneService.save(p2);
+            Prenotazione p3 = (Prenotazione) ctx.getBean("p3");
+            prenotazioneService.save(p3);
 
 
         } catch (NotFoundException e) {

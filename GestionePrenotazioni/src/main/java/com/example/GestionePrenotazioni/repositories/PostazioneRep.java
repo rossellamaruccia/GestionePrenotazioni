@@ -9,8 +9,8 @@ import java.util.List;
 
 @Repository
 public interface PostazioneRep extends JpaRepository<Postazione, Long> {
+    Postazione findByNMaxOccupanti(int n);
 
     List<Postazione> findByTipoPostazioneAndEdificio(tipoPostazione tipo, String edificio);
-
 
 }

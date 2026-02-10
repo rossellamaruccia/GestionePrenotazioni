@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 
-import java.util.Optional;
-
 @Configuration
 @PropertySource("application.properties")
 public class AppConfig {
@@ -17,9 +15,10 @@ public class AppConfig {
     private UtenteRep utenteRep;
     private PostazioneRep postazioneRep;
 
-    AppConfig(EdificioRep edificioRep, UtenteRep utenteRep) {
+    AppConfig(EdificioRep edificioRep, UtenteRep utenteRep, PostazioneRep postazioneRep) {
         this.edificioRep = edificioRep;
         this.utenteRep = utenteRep;
+        this.postazioneRep = postazioneRep;
     }
 
     @Primary
@@ -80,7 +79,7 @@ public class AppConfig {
     @Bean
     public Prenotazione p3() {
         Utente rosmaru = utenteRep.findByUsername("rosmaru");
-        Optional<Postazione> posto = postazioneRep.findById(Long.valueOf(1));
-        //return new Prenotazione(rosmaru, posto);
+        Postazione posto = postazioneRep.findByNMaxOccupanti(50);
+        return new Prenotazione(rosmaru, posto);
     }
 }
